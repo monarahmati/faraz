@@ -1,17 +1,10 @@
 import { create } from "zustand";
 
-export const useAuthStore = create((set) => ({
-  username: "",
-  password: "",
-  setUsernameStore: (newUsername) => set({ username: newUsername }),
-  setPasswordStore: (newPassword) => set({ password: newPassword }),
+const useModalStore = create((set) => ({
+  modalOpen: false,
+  selectedRowId: null,
+  setModalOpen: (isOpen) => set({ modalOpen: isOpen }),
+  setSelectedRowId: (id) => set({ selectedRowId: id }),
 }));
 
-
-
-// export const useCategoriesStore = create((set) => ({
-//   username: "",
-//   password: "",
-//   setUsernameStore: (newUsername) => set({ username: newUsername }),
-//   setPasswordStore: (newPassword) => set({ password: newPassword }),
-// }));
+export default useModalStore;

@@ -1,39 +1,23 @@
-import { createBrowserRouter } from "react-router-dom";
-import NotFound from "./pages/not-found";
 import Login from "./pages/auth/login";
-import { QueryClient, QueryClientProvider } from "react-query";
-import Message from "./pages/dashboard/message";
-
-
+import { createBrowserRouter } from "react-router-dom/dist";
+import Dashboard from "./pages/Home/Dashboard";
+import Admin from "./pages/Home/Admin";
 
 const router = createBrowserRouter([
   {
-    path: "/login",
-    element: (
-      <QueryClientProvider client={new QueryClient()}>
-        <Login />
-      </QueryClientProvider>
-    ),
+    path: "login",
+    element: <Login />,
+    errorElement : <Login/>
   },
   {
     path: "/",
-    element: (
-      <Message/>
-    ),
+    element: <Dashboard />,
   },
-
   {
-    path: "*",
-    element: <NotFound />,
+    path: "/admin",
+    element: <Admin/>,
   },
 ]);
 
 export default router;
 
-export async function postLoader() {
-  const response = await fetch("posts url");
-  if (!response.ok) {
-    throw new Error("Could not fetch posts");
-  }
-  return response;
-}
