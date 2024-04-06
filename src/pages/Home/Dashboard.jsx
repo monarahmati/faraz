@@ -13,6 +13,7 @@ import {
 import { DataGrid } from "@mui/x-data-grid";
 import DeleteIcon from "@mui/icons-material/Delete";
 import useModalStore from "../../store/auth";
+import { useCheckToken } from "../../hooks/useChecktToken";
 
 const styleModal = {
   position: "absolute",
@@ -30,6 +31,7 @@ const styleModal = {
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  useCheckToken()
   // const [modalOpen, setModalOpen] = useState(false);
   // const [selectedRowId, setSelectedRowId] = useState(null);
   const [rows, setRows] = useState(null);

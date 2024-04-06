@@ -4,12 +4,15 @@ import { ToastContainer } from "react-toastify";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import router from "./router";
 
-function App() {
 
+const queryclinte = new QueryClient()
+
+
+function App() {
 
   return (
     <>
-      <QueryClientProvider client={new QueryClient()}>
+      <QueryClientProvider client={queryclinte}>
         <RouterProvider router={router} />
         <ToastContainer rtl />
       </QueryClientProvider>

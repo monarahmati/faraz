@@ -17,6 +17,8 @@ import { randomId} from "@mui/x-data-grid-generator";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
+
 
 function EditToolbar(props) {
   const { setRows, setRowModesModel } = props;
@@ -59,9 +61,12 @@ export default function Admin() {
 
     return JSON.parse(userCookie);
   });
+  console.log(userData);
 
-  const initialRows = userData
-    ? [
+  
+  useEffect(() => {
+    if (userData) {
+      const initialRows = [
         {
           id: 1,
           name: "John Doe",
@@ -74,11 +79,33 @@ export default function Admin() {
           mobile: userData.mobile,
           email: userData.email,
         },
+      ];
+      setRows(initialRows);
+      // console.log(initialRows);
+    }
+  }, [userData]);
 
-      ]
-    : [];
-  const [rows, setRows] = React.useState(initialRows);
+  // const initialRows = userData
+  //   ? [
+  //       {
+  //         id: 1,
+  //         name: "John Doe",
+  //         mobile: 1234567890,
+  //         email: "john@example.com",
+  //       },
+  //       {
+  //         id: 2,
+  //         name: userData.name,
+  //         mobile: userData.mobile,
+  //         email: userData.email,
+  //       },
+
+  //     ]
+  //   : [];
+  const [rows, setRows] = React.useState([]);
   const [rowModesModel, setRowModesModel] = React.useState({});
+  // console.log(rows);
+
 
   const handleRowEditStop = (params, event) => {
     if (params.reason === GridRowEditStopReasons.rowFocusOut) {
@@ -203,7 +230,7 @@ export default function Admin() {
       }}
     >
       <DataGrid
-        rows={rows}
+        rows={rows || []}
         columns={columns}
         editMode="row"
         rowModesModel={rowModesModel}

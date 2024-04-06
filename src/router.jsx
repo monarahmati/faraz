@@ -9,6 +9,7 @@ const router = createBrowserRouter([
     element: <Login />,
     errorElement : <Login/>
   },
+  
   {
     path: "/",
     element: <Dashboard />,
